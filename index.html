@@ -1,0 +1,1265 @@
+<p></p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        
+        body {
+            background-color: #990000;
+            color: #ffcc00;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .lottery-blog-wrapper {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lottery-blog-wrapper h1,
+        .lottery-blog-wrapper h2,
+        .lottery-blog-wrapper h3 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+
+        .lottery-blog-wrapper h1 {
+            background: linear-gradient(45deg, #ffcc00, #ffd633, #ffb300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        .lottery-blog-wrapper h2 {
+            background: linear-gradient(45deg, #ffcc00, #ff8c00, #ffd633);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8em;
+        }
+
+        .lottery-blog-wrapper h3 {
+            font-size: 1.3em;
+            margin-top: 30px;
+        }
+
+        .marquee-wrapper {
+            background: linear-gradient(135deg, #330000, #660000, #990000);
+            color: #ffcc00;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .marquee-wrapper marquee {
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        #marketLogo {
+            width: 200px;
+            height: 80px;
+            object-fit: contain;
+            margin: 30px auto;
+            display: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(102, 0, 0, 0.2), rgba(255, 204, 0, 0.1));
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+        }
+
+        #marketButtons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .lottery-blog-wrapper button {
+            padding: 14px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #660000 0%, #990000 50%, #cc0000 100%);
+            color: #ffcc00;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 0, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            min-width: 150px;
+        }
+
+        #marketButtons button {
+            flex: 0 1 calc(25% - 10px);
+            min-width: 140px;
+        }
+
+        .lottery-blog-wrapper button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .lottery-blog-wrapper button:hover::before {
+            left: 100%;
+        }
+
+        .lottery-blog-wrapper button:hover {
+            background: linear-gradient(135deg, #cc0000 0%, #990000 50%, #660000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 0, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.5);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+        }
+
+        .lottery-blog-wrapper button:active {
+            transform: translateY(0);
+        }
+
+        #backButton {
+            margin: 30px auto;
+            display: none;
+            width: auto !important;
+            min-width: 200px;
+        }
+
+        .table-container {
+            display: none;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .table-container.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lottery-blog-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: #660000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 204, 0, 0.2);
+        }
+
+        .lottery-blog-wrapper th {
+            background: linear-gradient(135deg, #660000, #7a0000);
+            color: #ffcc00;
+            padding: 16px 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+            border-right: 1px solid rgba(255, 204, 0, 0.1);
+        }
+
+        .lottery-blog-wrapper td {
+            border: 1px solid rgba(255, 204, 0, 0.15);
+            padding: 14px 12px;
+            text-align: center;
+            background: linear-gradient(135deg, #990000, #8b0000);
+            color: #ffcc00;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .lottery-blog-wrapper tr:nth-child(even) td {
+            background: linear-gradient(135deg, #8b0000, #7a0000);
+        }
+
+        .lottery-blog-wrapper tr:hover td {
+            background: linear-gradient(135deg, #cc0000, #ff6600, #ffcc00);
+            color: #ffffff;
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(255, 204, 0, 0.5), 0 0 15px rgba(204, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+        }
+
+        .prize-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            color: #fff;
+            font-size: 1em;
+            pointer-events: none;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lottery-blog-wrapper {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .lottery-blog-wrapper h1 {
+                font-size: 1.8em;
+            }
+
+            #marketButtons button {
+                flex: 0 1 calc(50% - 10px);
+                min-width: 120px;
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            #backButton {
+                width: 100% !important;
+            }
+
+            .lottery-blog-wrapper th,
+            .lottery-blog-wrapper td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lottery-blog-wrapper table {
+                font-size: 11px;
+            }
+
+            .lottery-blog-wrapper th,
+            .lottery-blog-wrapper td {
+                padding: 8px 6px;
+            }
+
+            #marketButtons button {
+                flex: 0 1 100%;
+            }
+        }
+    </style>
+<div class="lottery-blog-wrapper">
+<div class="marquee-wrapper"><marquee behavior="scroll" direction="left" scrollamount="6"> Selamat datang di halaman Hadiah Togel TVTOTO, tempat terbaik untuk melihat secara lengkap seluruh informasi mengenai nilai hadiah dan TVTOTO menghadirkan berbagai jenis hadiah togel dengan pasaran terlengkap dan paling up-to-date! </marquee></div>
+<h1 id="pageTitle">Pilih Pasaran Togel</h1>
+<img id="marketLogo" alt="Logo Pasaran" />
+<div id="marketButtons"><button onclick="showMarket('BANGKOK POOLS')">BANGKOK POOLS</button> <button onclick="showMarket('BRUNEI POOLS')">BRUNEI POOLS</button> <button onclick="showMarket('BULLSEYE')">BULLSEYE</button> <button onclick="showMarket('CALIFORNIA')">CALIFORNIA</button> <button onclick="showMarket('CAROLINA')">CAROLINA</button> <button onclick="showMarket('CHELSEA POOLS')">CHELSEA POOLS</button> <button onclick="showMarket('FLORIDA')">FLORIDA</button> <button onclick="showMarket('HOKIDRAW')">HOKI DRAW</button> <button onclick="showMarket('HONGKONG LOTTO')">HONGKONG LOTTO</button> <button onclick="showMarket('HUAHIN LOTTERY')">HUAHIN LOTTERY</button> <button onclick="showMarket('KENTUCKY')">KENTUCKY</button> <button onclick="showMarket('KINGKONG 4D')">KINGKONG 4D</button> <button onclick="showMarket('MAGNUM4D')">MAGNUM4D</button> <button onclick="showMarket('NEVADA')">NEVADA</button> <button onclick="showMarket('NEW YORK')">NEW YORK</button> <button onclick="showMarket('OREGON')">OREGON</button> <button onclick="showMarket('PCSO')">PCSO</button> <button onclick="showMarket('POIPET LOTTERY')">POIPET LOTTERY</button> <button onclick="showMarket('SINGAPORE 4D')">SINGAPORE 4D</button> <button onclick="showMarket('SYDNEY LOTTO')">SYDNEY LOTTO</button> <button onclick="showMarket('TOTOCAMBODIALIVE')">TOTOCAMBODIALIVE</button> <button onclick="showMarket('TOTO MACAU')">TOTO MACAU</button> <button onclick="showMarket('TOTO MALI')">TOTO MALI</button></div>
+<button id="backButton" onclick="showMarketSelection()"> &larr; Pilih Pasaran Lainnya </button>
+<div id="prizeTables" class="table-container"></div>
+</div>
+<script>
+        const marketData = {
+            "BANGKOK POOLS": {
+                logo: "https://bangkokpoolstoday.com/assets/img/bangkokpools_logo.png",
+                type: "standard"
+            },
+            "BRUNEI POOLS": {
+                logo: "https://bruneipools.com/assets/img/brunei-logo.png",
+                type: "standard"
+            },
+            "BULLSEYE": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/f07d4e2a6517ef1cea9e2a897e4abb98/nz-bullseye.png",
+                type: "simple"
+            },
+            "CALIFORNIA": {
+                logo: "https://nclottery.com/Site/GFX/NCEL_Alt.svg",
+                type: "simple"
+            },
+            "CAROLINA": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/7c3b7b0affd7880d2dddf918ba2ac258/calottlogo.png",
+                type: "simple"
+            },
+            "CHELSEA POOLS": {
+                logo: "https://chelseapools.co.uk/assets/img/chelseaPools_logo.png",
+                type: "standard"
+            },
+            "FLORIDA": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/a3e564ccb04c2b751ad4fa88c06e39c1/1-removebg-preview.png",
+                type: "simple"
+            },
+            "HOKIDRAW": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/12/19/20241219/ac50392c62d80177d05137f6b86e925f/logo.png",
+                type: "hokidraw"
+            },
+            "HONGKONG LOTTO": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/12/01/20241201/288e5650fd04b013e764f0e71a9b6e59/hongkong-lotto-1.png",
+                type: "standard"
+            },
+            "HUAHIN LOTTERY": {
+                logo: "https://huahinlottery.com/assets/img/logo.png",
+                type: "standard"
+            },
+            "KENTUCKY": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/a5fafa0102d98ab3959ceb9bb1045729/kl-logo.png",
+                type: "simple"
+            },
+            "KINGKONG 4D": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/11/26/20241126/d1f18e378e4a422b41ffe8d03065ce7d/logo-7.png",
+                type: "kingkong"
+            },
+            "MAGNUM4D": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/8889f1c5fc738b5148145100c08a0ebc/439-4390693-magnum-pengeluaran-magnum-4d-hari-clipart-removebg-preview.png",
+                type: "standard"
+            },
+            "NEVADA": {
+                logo: "https://www.nevadalottery.us/images/logo.gif",
+                type: "standard"
+            },
+            "NEW YORK": {
+                logo: "https://edit.nylottery.ny.gov/sites/default/files/logo-2179655b4229a219a9305b3f0e734bd0.png",
+                type: "simple"
+            },
+            "OREGON": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/11/26/20241126/0a72e6fa9a2d4ee4106678aeeab33624/favpng-oregon-lottery-video-lottery-terminal-game.png",
+                type: "simple"
+            },
+            "PCSO": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/32b1d9cb48d2c0a9f1c7e77853565fa1/pcso.png",
+                type: "simple"
+            },
+            "POIPET LOTTERY": {
+                logo: "https://poipetlottery.com/img/logo.png",
+                type: "standard"
+            },
+            "SINGAPORE 4D": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az4/2024/08/11/20240811/3bfebdf49384a3f84bcf6941aadd63f0/sgp.png",
+                type: "standard"
+            },
+            "SYDNEY LOTTO": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/12/01/20241201/f32f7b4a1bffd956ee9a3956421200e9/logo-sydney.png",
+                type: "standard"
+            },
+            "TOTOCAMBODIALIVE": {
+                logo: "https://totocambodialive.com/assets/img/logo.png",
+                type: "standard"
+            },
+            "TOTO MACAU": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/11/27/20241127/f7eb84038645576860451fbcb2a6c5a2/totomacau-12-photoroom-photoroom.png",
+                type: "simple"
+            },
+            "TOTO MALI": {
+                logo: "https://cdn.areabermain.club/assets/cdn/az9/2024/12/19/20241219/04ec47708d9c40f2713c92d372b2cb0e/logo.svg",
+                type: "totomali"
+            }
+        };
+
+        function getStandardTables() {
+            return `
+                <h3>HADIAH PRIZE 123</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>4D</th>
+                        <th>3D</th>
+                        <th>2D</th>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 1</td>
+                        <td>x6500</td>
+                        <td>x650</td>
+                        <td>x70</td>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 2</td>
+                        <td>x2100</td>
+                        <td>x210</td>
+                        <td>x20</td>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 3</td>
+                        <td>x1100</td>
+                        <td>x110</td>
+                        <td>x8</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET FULL</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x10,000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x1,000</td>
+                    </tr>
+                    <tr>
+                        <td>2D</td>
+                        <td>x100</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (4D BB)</td>
+                        <td>x4000</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (4D BB)</td>
+                        <td>x200</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (3D BB)</td>
+                        <td>x400</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (3D BB)</td>
+                        <td>x100</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (2D BB)</td>
+                        <td>x70</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (2D BB)</td>
+                        <td>x20</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET DISCOUNT</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x3000</td>
+                        <td>66.50%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x400</td>
+                        <td>59.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x65</td>
+                        <td>29.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x65</td>
+                        <td>29.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x70</td>
+                        <td>29.50%</td>
+                    </tr>
+                </table>
+                ${getSharedTables()}
+            `;
+        }
+
+        function getSimpleTables() {
+            return `
+                <h3>HADIAH BET FULL</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x10,000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x1,000</td>
+                    </tr>
+                    <tr>
+                        <td>2D</td>
+                        <td>x100</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (4D BB)</td>
+                        <td>x4000</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (4D BB)</td>
+                        <td>x200</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (3D BB)</td>
+                        <td>x400</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (3D BB)</td>
+                        <td>x100</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (2D BB)</td>
+                        <td>x70</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (2D BB)</td>
+                        <td>x20</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET DISCOUNT</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x3000</td>
+                        <td>66.50%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x400</td>
+                        <td>59.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x65</td>
+                        <td>29.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x65</td>
+                        <td>29.50%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x70</td>
+                        <td>29.50%</td>
+                    </tr>
+                </table>
+                ${getSharedTables()}
+            `;
+        }
+
+        function getSharedTables() {
+            return `
+                <h3>HADIAH COLOK BEBAS</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (1 Digit)</td>
+                        <td>x1.5</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (2 Digit)</td>
+                        <td>x3</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (3 Digit)</td>
+                        <td>x4.5</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (4 Digit)</td>
+                        <td>x6</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH COLOK BEBAS 2D</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (2 Digit)</td>
+                        <td>x7</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (3 Digit)</td>
+                        <td>x11</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (4 Digit)</td>
+                        <td>x18</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH COLOK NAGA</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Naga (3 Digit)</td>
+                        <td>x23</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Naga (4 Digit)</td>
+                        <td>x35</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH LAIN-LAIN</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Jitu</td>
+                        <td>x8</td>
+                    </tr>
+                    <tr>
+                        <td>Shio</td>
+                        <td>x9.5</td>
+                    </tr>
+                    <tr>
+                        <td>Kombinasi</td>
+                        <td>x2.6</td>
+                    </tr>
+                    <tr>
+                        <td>Tepi Tengah</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                    <tr>
+                        <td>Silang Homo</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                    <tr>
+                        <td>Dasar (Ganjil / Besar)</td>
+                        <td>KEI -25%</td>
+                    </tr>
+                    <tr>
+                        <td>Dasar (Genap / Kecil)</td>
+                        <td>KEI +10%</td>
+                    </tr>
+                    <tr>
+                        <td>50-50</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                    <tr>
+                        <td>Kembang Kempis</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function getTotoMaliTables() {
+            return `
+                <h3>HADIAH PRIZE 123 TOTOMALI</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>4D</th>
+                        <th>3D</th>
+                        <th>2D</th>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 1</td>
+                        <td>x6500</td>
+                        <td>x650</td>
+                        <td>x70</td>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 2</td>
+                        <td>x2100</td>
+                        <td>x210</td>
+                        <td>x20</td>
+                    </tr>
+                    <tr>
+                        <td>PRIZE 3</td>
+                        <td>x1100</td>
+                        <td>x110</td>
+                        <td>x8</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET FULL PASARAN TOTOMALI</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x10,000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x1,000</td>
+                    </tr>
+                    <tr>
+                        <td>2D</td>
+                        <td>x100</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BB TOTOMALI</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (4D BB)</td>
+                        <td>x4000</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (4D BB)</td>
+                        <td>x200</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (3D BB)</td>
+                        <td>x400</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (3D BB)</td>
+                        <td>x100</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tepat (2D BB)</td>
+                        <td>x70</td>
+                    </tr>
+                    <tr>
+                        <td>Tebakan Tidak Tepat (2D BB)</td>
+                        <td>x20</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB - ALL PASARAN TOTOMALI</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x3000</td>
+                        <td>67%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x400</td>
+                        <td>57%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function getKingKongTables() {
+            return `
+                <h3>HADIAH BET FULL PASARAN KINGKONG 4D</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x10,000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x1,000</td>
+                    </tr>
+                    <tr>
+                        <td>2D</td>
+                        <td>x100</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB DISCOUNT KINGKONG 4D</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x3000</td>
+                        <td>67%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x400</td>
+                        <td>57%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x70</td>
+                        <td>27%</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET DISCOUNT PASARAN KINGKONG 4D</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x6000</td>
+                        <td>33%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x700</td>
+                        <td>24%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x80</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x80</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x80</td>
+                        <td>15%</td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function getHokidrawTables() {
+            return `
+                <h3>HADIAH BET FULL PASARAN HOKIDRAW</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>x88,000</td>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x10,000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x1,000</td>
+                    </tr>
+                    <tr>
+                        <td>2D</td>
+                        <td>x100</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET DISCOUNT HOKIDRAW</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                        <th>DISCOUNT</th>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>x50,000</td>
+                        <td>38%</td>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x7000</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x750</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x75</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x75</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x75</td>
+                        <td>20%</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB - ALL PASARAN HOKIDRAW</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>x50,000</td>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x5000</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x500</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x80</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x80</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x80</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH BET BB TIDAK TEPAT - ALL PASARAN HOKIDRAW</h3>
+                <table>
+                    <tr>
+                        <th>HADIAH</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>5D</td>
+                        <td>x350</td>
+                    </tr>
+                    <tr>
+                        <td>4D</td>
+                        <td>x180</td>
+                    </tr>
+                    <tr>
+                        <td>3D</td>
+                        <td>x75</td>
+                    </tr>
+                    <tr>
+                        <td>2D DEPAN</td>
+                        <td>x15</td>
+                    </tr>
+                    <tr>
+                        <td>2D TENGAH</td>
+                        <td>x15</td>
+                    </tr>
+                    <tr>
+                        <td>2D BELAKANG</td>
+                        <td>x15</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH COLOK BEBAS</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (1 Digit)</td>
+                        <td>x0.9</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (2 Digit)</td>
+                        <td>x1.8</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (3 Digit)</td>
+                        <td>x2.7</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (4 Digit)</td>
+                        <td>x3.6</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas (5 Digit)</td>
+                        <td>x4.5</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH COLOK BEBAS 2D</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (2 Digit)</td>
+                        <td>x4</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (3 Digit)</td>
+                        <td>x6</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (4 Digit)</td>
+                        <td>x20</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Bebas 2D (5 Digit)</td>
+                        <td>x200</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH COLOK NAGA</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Naga (3 Digit)</td>
+                        <td>x12</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Naga (4 Digit)</td>
+                        <td>x30</td>
+                    </tr>
+                    <tr>
+                        <td>Colok Naga (5 Digit)</td>
+                        <td>x125</td>
+                    </tr>
+                </table>
+
+                <h3>HADIAH LAIN-LAIN</h3>
+                <table>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Kali</th>
+                    </tr>
+                    <tr>
+                        <td>Colok Jitu</td>
+                        <td>x8</td>
+                    </tr>
+                    <tr>
+                        <td>Shio</td>
+                        <td>x9.5</td>
+                    </tr>
+                    <tr>
+                        <td>Kombinasi</td>
+                        <td>x2.7</td>
+                    </tr>
+                    <tr>
+                        <td>Tepi Tengah</td>
+                        <td>1:1 x KEI -2.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Silang Homo</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                    <tr>
+                        <td>Dasar (Ganjil / Besar)</td>
+                        <td>KEI -25%</td>
+                    </tr>
+                    <tr>
+                        <td>Dasar (Genap / Kecil)</td>
+                        <td>KEI +10%</td>
+                    </tr>
+                    <tr>
+                        <td>50-50</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                    <tr>
+                        <td>Kembang Kempis</td>
+                        <td>1:1 x KEI -3%</td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function showMarket(marketName) {
+            const market = marketData[marketName];
+            if (!market) return;
+
+            document.getElementById('pageTitle').textContent = `Hadiah ${marketName}`;
+            document.getElementById('marketLogo').src = market.logo;
+            document.getElementById('marketLogo').style.display = 'block';
+            document.getElementById('marketButtons').style.display = 'none';
+            document.getElementById('backButton').style.display = 'block';
+
+            const prizeTables = document.getElementById('prizeTables');
+            
+            let content = '';
+            switch(market.type) {
+                case 'totomali':
+                    content = getTotoMaliTables();
+                    break;
+                case 'kingkong':
+                    content = getKingKongTables();
+                    break;
+                case 'hokidraw':
+                    content = getHokidrawTables();
+                    break;
+                case 'simple':
+                    content = getSimpleTables();
+                    break;
+                default:
+                    content = getStandardTables();
+            }
+
+            prizeTables.innerHTML = content;
+            prizeTables.classList.add('show');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showMarketSelection() {
+            document.getElementById('pageTitle').textContent = 'Pilih Pasaran Togel';
+            document.getElementById('marketLogo').style.display = 'none';
+            document.getElementById('marketButtons').style.display = 'flex';
+            document.getElementById('backButton').style.display = 'none';
+            
+            const prizeTables = document.getElementById('prizeTables');
+            prizeTables.classList.remove('show');
+            
+            setTimeout(() => {
+                prizeTables.innerHTML = '';
+            }, 500);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+            snowflake.style.opacity = Math.random();
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+
+        setInterval(createSnowflake, 300);
+    </script>
